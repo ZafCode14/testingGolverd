@@ -4,13 +4,7 @@ import calculatePrice from '@/lib/getPrice';
 import Buttons from './components/Buttons';
 import ProductMainImage from './components/ProductMainIMage';
 
-interface ProductPageProps {
-  params: { 
-    productId: string;
-  };
-}
-
-const Page = async ({ params }: ProductPageProps) => {
+const Page = async ({ params }: { params: Promise<{ productId: string }> }) => {
   const { productId } = await params;
   const { vendor, product, products } = await getProductAndVendorByProductId(productId);
 

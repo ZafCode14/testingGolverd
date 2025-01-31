@@ -1,9 +1,7 @@
 "use client";
-import { setPathR } from "@/store/headerSlice";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
 
 // Define types for product and cart items
 interface Product {
@@ -19,7 +17,6 @@ interface CartItem {
 
 function Page() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const dispatch = useDispatch();
 
   // Function to get cart items from localStorage with proper type handling
   const getCartItems = (): CartItem[] => {
@@ -41,11 +38,10 @@ function Page() {
   };
 
   useEffect(() => {
-    dispatch(setPathR('/cart'));
     // Fetch cart items from localStorage when the component mounts
     const items = getCartItems();
     setCartItems(items);
-  }, [dispatch]);
+  }, []);
 
   // Function to update item quantity in the cart
   const updateAmount = (index: number, newAmount: number) => {

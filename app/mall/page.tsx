@@ -10,8 +10,6 @@ import useWindowDimensions from "@/hooks/dimentions";
 import FlipPhone from "@/components/mall/flipPhone";
 import RendorChoseVendor from "@/components/mall/rendorChoseVendor";
 import { useSearchParams } from "next/navigation";
-import { useDispatch } from "react-redux";
-import { setPathR } from "@/store/headerSlice";
 
 interface GroupedVendors {
   gold: Vendors[];
@@ -19,7 +17,6 @@ interface GroupedVendors {
   raw: Vendors[];
 }
 function Page() {
-  const dispatch = useDispatch();
   const [zoomInButton, setZoomInButton] = useState<boolean>(false);
   const [elev, setElev] = useState<boolean>(false);
   const [floor, setFloor] = useState<string>("gold");
@@ -65,7 +62,6 @@ function Page() {
   const {width, height} = useWindowDimensions();
 
   useEffect(() => {
-    dispatch(setPathR('/mall'));
     const getVendors = async () => {
       const vendorsCollection = collection(firestore, 'vendors');
 
@@ -119,7 +115,7 @@ function Page() {
 
     getVendors();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch]);
+  }, []);
 
   const p1VendorCategories: Array<keyof GroupedVendors> = ['gold', 'silver', 'raw'];
   const p2VendorCategories: Array<keyof GroupedVendors> = ['gold', 'silver', 'raw'];

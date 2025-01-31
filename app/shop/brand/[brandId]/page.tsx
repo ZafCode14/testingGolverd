@@ -5,13 +5,13 @@ import { getVendorAndProductsByVendorId } from '@/lib/api';
 import Filter from '../../filter/filter';
 import BackButton from './BackButton';
 
-interface Props {
+type Props = {
   params: { 
     brandId: string;
   };
 }
 
-const Page = async ({ params }: Props) => {
+const Page = async ({ params }: { params: Promise<{ brandId: string }> }) => {
   const parameters = await params;
   const vendorId = parameters.brandId;
   const {vendor, products} = await getVendorAndProductsByVendorId(vendorId);
