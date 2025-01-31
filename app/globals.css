@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.horizontal-slider {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.example-track {
+  background: #ddd;
+  height: 2px; /* Adjust the track height */
+}
+
+.example-track.example-track-0 {
+    background: rgb(173, 173, 173);
+}
+.example-track.example-track-1 {
+    background: #85563C;
+    height: 3px;
+}
+.example-track.example-track-2 {
+    background: rgb(173, 173, 173);
+}
+
+.example-thumb {
+  height: 18px;
+  width: 18px;
+  background-color: #85563C;
+  border-radius: 100%;
+}
+
+@media (max-height: 450px) {
+  header {
+    display: none;
+  }
+}
