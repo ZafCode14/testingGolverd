@@ -45,7 +45,7 @@ const Products = ({ products }: Props) => {
       })}
       <div className={`w-full flex justify-center pb-10 pt-5`} onClick={() => setPagination([pagination[0], pagination[1] + 50])}>
         {
-          pagination[1] < products.length &&
+          pagination[1] < filteredProducts.length &&
           <p className={`px-5 py-1 bg-[#C4A153] rounded-md cursor-pointer`}>More</p>
         }
       </div>
