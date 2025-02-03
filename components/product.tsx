@@ -17,14 +17,17 @@ function Product({ product, vendors }: Prop) {
   return (
     <Link href={p.startsWith('/insta') ? `/insta/product/${product.docID}` : `/shop/product/${product.docID}`} className="w-full h-full text-black">
       <div className={`w-full h-full object-cover overflow-hidden flex justify-center items-center bg-[white] rounded-md`}>
+        {/**
+         * 
         <Image
           loading="lazy"
           src={product.images[0]}
           alt={'product image'}
-          width={1080}
-          height={720}
+          width={1000}
+          height={1000}
           className={`object-contain h-full`}
         />
+         */}
       </div>
       <p className="font-bold leading-[16px] mt-[5px]">{product.name}</p>
       <p className="text-[12px]">{vendor?.name || 'Unknown Vendor'}</p> {/* Handle undefined vendor */}

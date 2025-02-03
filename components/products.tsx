@@ -4,12 +4,14 @@ import Product from "./product";
 import { RootState } from "@/store/store";
 import { Product as ProductType } from "@/lib/types";
 import { setCategoriesR, setSearchR } from "@/store/filterSlice";
+import { useState } from "react";
 
 type Props = {
   products: ProductType[];
 }
 const Products = ({ products }: Props) => {
   const dispatch = useDispatch();
+  const [pagination, setPagination] = useState<number[]>([0, 50]);
   const vendors =  useSelector((state: RootState) => state.data.vendors);
   const categories = useSelector((state: RootState) => state.filter.categories);
   const price = useSelector((state: RootState) => state.filter.price);
@@ -23,9 +25,11 @@ const Products = ({ products }: Props) => {
     return matchesSearch && matchesCategory && matchesPrice;
   });
 
+  const productSet = filteredProducts.slice(pagination[0], pagination[1])
+
   return (
     <div className="flex flex-wrap justify-around">
-      {filteredProducts.map((product) => {
+      {productSet.map((product) => {
         return (
           <div
             key={product.docID} // Use unique identifier for key
@@ -39,6 +43,12 @@ const Products = ({ products }: Props) => {
           </div>
         );
       })}
+      <div className={`w-full flex justify-center pb-10 pt-5`} onClick={() => setPagination([pagination[0], pagination[1] + 50])}>
+        {
+          pagination[1] < products.length &&
+          <p className={`px-5 py-1 bg-[#C4A153] rounded-md cursor-pointer`}>More</p>
+        }
+      </div>
     </div>
   );
 };
